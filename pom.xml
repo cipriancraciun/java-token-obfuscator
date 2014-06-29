@@ -113,4 +113,28 @@
 		</developer>
 	</developers>
 	
+	<distributionManagement>
+		<downloadUrl>https://data.volution.ro/ciprian/90f13e43717fa634bf7344f4d875a529</downloadUrl>
+		<repository>
+			<id>releases</id>
+			<url>file:./.repository</url>
+			<uniqueVersion>true</uniqueVersion>
+		</repository>
+		<snapshotRepository>
+			<id>snapshots</id>
+			<url>file:./.repository</url>
+			<uniqueVersion>false</uniqueVersion>
+		</snapshotRepository>
+	</distributionManagement>
+	
+	<repositories>
+		<repository>
+			<id>volution</id>
+			<url>https://data.volution.ro/ciprian/90f13e43717fa634bf7344f4d875a529</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+	
 </project>
