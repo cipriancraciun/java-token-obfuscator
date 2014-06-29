@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project
+			xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	
+	<groupId>ro.volution.java.tools</groupId>
+	<artifactId>token-obfuscator</artifactId>
+	<version>0.1.0-SNAPSHOT</version>
+	<packaging>jar</packaging>
+	
+	<dependencies>
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>${versions.dependencies.guava}</version>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${versions.dependencies.junit}</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+	
+	<build>
+		<defaultGoal>package</defaultGoal>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${versions.plugins.compiler}</version>
+				<configuration>
+					<source>${versions.java.source}</source>
+					<target>${versions.java.target}</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>${versions.plugins.source}</version>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>${versions.plugins.javadoc}</version>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-eclipse-plugin</artifactId>
+				<version>${versions.plugins.eclipse}</version>
+				<configuration>
+					<projectNameTemplate>volution-java-token-obfuscator</projectNameTemplate>
+					<downloadJavadocs>true</downloadJavadocs>
+					<downloadSources>true</downloadSources>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	
+	<properties>
+		
+		<versions.dependencies.guava>17.0</versions.dependencies.guava>
+		<versions.dependencies.junit>4.10</versions.dependencies.junit>
+		
+		<versions.plugins.compiler>2.3.2</versions.plugins.compiler>
+		<versions.plugins.eclipse>2.8</versions.plugins.eclipse>
+		<versions.plugins.jar>2.4</versions.plugins.jar>
+		<versions.plugins.javadoc>2.8</versions.plugins.javadoc>
+		<versions.plugins.source>2.1.2</versions.plugins.source>
+		
+		<versions.java.source>1.7</versions.java.source>
+		<versions.java.target>1.7</versions.java.target>
+		
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		
+	</properties>
+	
+	<name>Volution Java token obfuscator</name>
+	<inceptionYear>2014</inceptionYear>
+	<url>https://volution.ro/ciprian</url>
+	
+	<licenses>
+		<license>
+			<name>Apache License 2.0</name>
+			<url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+	
+	<developers>
+		<developer>
+			<id>ciprian</id>
+			<name>Ciprian Dorin Craciun</name>
+			<email>ciprian@volution.ro</email>
+		</developer>
+	</developers>
+	
+</project>
