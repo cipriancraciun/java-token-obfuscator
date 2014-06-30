@@ -74,16 +74,26 @@ public final class Obfuscator
 		this.localMonitor = new Object ();
 	}
 	
-	public final int decodeIdentifier32 (final String token) {
+	public final int decodeIdentifier32 (final Class<?> type, final String token) {
+		// FIXME: Assure uniqueness of type!
+		return (this.decodeIdentifier32 (System.identityHashCode (type), token));
+	}
+	
+	public final int decodeIdentifier32 (final int type, final String token) {
 		final byte[] buffer = this.algorithms.decodeBuffer (token);
 		this.decrypt (buffer);
-		final Identifier32Token wrapper = Identifier32Token.decode (buffer);
+		final Identifier32Token wrapper = Identifier32Token.decode (type, buffer);
 		this.verifyTimestamp (wrapper.timestamp);
 		return (wrapper.identifier);
 	}
 	
-	public final String encodeIdentifier32 (final int identifier) {
-		final Identifier32Token wrapper = Identifier32Token.create (identifier, this.generateTimestamp ());
+	public final String encodeIdentifier32 (final Class<?> type, final int identifier) {
+		// FIXME: Assure uniqueness of type!
+		return (this.encodeIdentifier32 (System.identityHashCode (type), identifier));
+	}
+	
+	public final String encodeIdentifier32 (final int type, final int identifier) {
+		final Identifier32Token wrapper = Identifier32Token.create (type, identifier, this.generateTimestamp ());
 		final byte[] buffer = Identifier32Token.encode (wrapper);
 		this.encrypt (buffer);
 		final String token = this.algorithms.encodeBuffer (buffer);
@@ -255,35 +265,39 @@ public final class Obfuscator
 	public static final class Identifier32Token
 				extends Object
 	{
-		private Identifier32Token (final int identifier, final long timestamp) {
+		private Identifier32Token (final int type, final int identifier, final long timestamp) {
 			super ();
+			this.type = type;
 			this.identifier = identifier;
 			this.timestamp = timestamp;
-			this.checksum = Identifier32Token.generateChecksum (this.identifier, this.timestamp);
+			this.checksum = Identifier32Token.generateChecksum (this.type, this.identifier, this.timestamp);
 		}
 		
 		public final int checksum;
 		public final int identifier;
 		public final long timestamp;
+		public final int type;
 		
-		public static final Identifier32Token create (final int identifier, final long timestamp) {
-			return (new Identifier32Token (identifier, timestamp));
+		public static final Identifier32Token create (final int type, final int identifier, final long timestamp) {
+			return (new Identifier32Token (type, identifier, timestamp));
 		}
 		
-		public static final Identifier32Token decode (final byte[] buffer) {
+		public static final Identifier32Token decode (final int type, final byte[] buffer) {
+			// FIXME: Handle type information!
 			if (buffer.length != (4 + 8 + 4))
 				throw (new ObfuscationError ());
 			final ByteArrayDataInput inputer = ByteStreams.newDataInput (buffer);
 			final int identifier = inputer.readInt ();
 			final long timestamp = inputer.readLong ();
 			final int checksum = inputer.readInt ();
-			final Identifier32Token token = Identifier32Token.create (identifier, timestamp);
+			final Identifier32Token token = Identifier32Token.create (type, identifier, timestamp);
 			if (token.checksum != checksum)
 				throw (new ObfuscationError ());
 			return (token);
 		}
 		
 		public static final byte[] encode (final Identifier32Token token) {
+			// FIXME: Handle type information!
 			final ByteArrayDataOutput outputer = ByteStreams.newDataOutput ();
 			outputer.writeInt (token.identifier);
 			outputer.writeLong (token.timestamp);
@@ -292,7 +306,8 @@ public final class Obfuscator
 			return (buffer);
 		}
 		
-		protected final static int generateChecksum (final int identifier, final long timestamp) {
+		protected final static int generateChecksum (final int type, final int identifier, final long timestamp) {
+			// FIXME: Handle type information!
 			final Hasher hasher = Identifier32Token.checksumGenerator.newHasher ();
 			hasher.putInt (identifier);
 			hasher.putLong (timestamp);

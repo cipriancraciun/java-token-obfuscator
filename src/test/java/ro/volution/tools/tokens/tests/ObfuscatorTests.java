@@ -57,7 +57,7 @@ public final class ObfuscatorTests
 	
 	@Test
 	public final void testIdentifier32TokenChecksum () {
-		final Identifier32Token token = Identifier32Token.create (0, 0);
+		final Identifier32Token token = Identifier32Token.create (0, 0, 0);
 		Assert.assertEquals (2077607535, token.checksum);
 	}
 	
@@ -152,8 +152,8 @@ public final class ObfuscatorTests
 	}
 	
 	protected final void testIdentifier32Coding (final Obfuscator obfuscator, final int identifier) {
-		final String token = obfuscator.encodeIdentifier32 (identifier);
-		final int outcome = obfuscator.decodeIdentifier32 (token);
+		final String token = obfuscator.encodeIdentifier32 (0, identifier);
+		final int outcome = obfuscator.decodeIdentifier32 (0, token);
 		Assert.assertEquals (identifier, outcome);
 	}
 	
@@ -191,7 +191,7 @@ public final class ObfuscatorTests
 		for (final Map.Entry<Integer, String> testVector : testVectors.entrySet ()) {
 			final String token = testVector.getValue ();
 			final int expectedIdentifier = testVector.getKey ().intValue ();
-			final int actualIdentifier = obfuscator.decodeIdentifier32 (token);
+			final int actualIdentifier = obfuscator.decodeIdentifier32 (0, token);
 			Assert.assertEquals (expectedIdentifier, actualIdentifier);
 		}
 	}
@@ -200,7 +200,7 @@ public final class ObfuscatorTests
 		for (final Map.Entry<Integer, String> testVector : testVectors.entrySet ()) {
 			final int identifier = testVector.getKey ().intValue ();
 			final String expectedToken = testVector.getValue ();
-			final String actualToken = obfuscator.encodeIdentifier32 (identifier);
+			final String actualToken = obfuscator.encodeIdentifier32 (0, identifier);
 			Assert.assertEquals (expectedToken, actualToken);
 		}
 	}
