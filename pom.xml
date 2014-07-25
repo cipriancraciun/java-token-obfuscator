@@ -86,8 +86,8 @@
 		<versions.plugins.javadoc>2.8</versions.plugins.javadoc>
 		<versions.plugins.source>2.1.2</versions.plugins.source>
 		
-		<versions.java.source>1.7</versions.java.source>
-		<versions.java.target>1.7</versions.java.target>
+		<versions.java.source>1.6</versions.java.source>
+		<versions.java.target>1.6</versions.java.target>
 		
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		

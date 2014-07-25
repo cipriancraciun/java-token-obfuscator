@@ -207,17 +207,17 @@ public final class ObfuscatorTests
 	
 	static {
 		{
-			final ImmutableBiMap.Builder<Integer, String> builder = new ImmutableBiMap.Builder<> ();
+			final ImmutableBiMap.Builder<Integer, String> builder = new ImmutableBiMap.Builder<Integer, String> ();
 			builder.put (Integer.valueOf (0), "70558d29cab8f27775f1e632de7e56fe");
 			identifier32CodingTestVectors1 = builder.build ();
 		}
 		{
-			final ImmutableBiMap.Builder<Integer, String> builder = new ImmutableBiMap.Builder<> ();
+			final ImmutableBiMap.Builder<Integer, String> builder = new ImmutableBiMap.Builder<Integer, String> ();
 			builder.put (Integer.valueOf (0), "5fc28b0e78d13f1ebe6626fc4cb1c015");
 			identifier32CodingTestVectors2 = builder.build ();
 		}
 		{
-			final ImmutableBiMap.Builder<String, String> builder = new ImmutableBiMap.Builder<> ();
+			final ImmutableBiMap.Builder<String, String> builder = new ImmutableBiMap.Builder<String, String> ();
 			builder.put ("80000000000000000000000000000000", "3ad78e726c1ec02b7ebfe92b23d9ec34");
 			builder.put ("40000000000000000000000000000000", "45bc707d29e8204d88dfba2f0b0cad9b");
 			builder.put ("20000000000000000000000000000000", "161556838018f52805cdbd6202002e3f");
