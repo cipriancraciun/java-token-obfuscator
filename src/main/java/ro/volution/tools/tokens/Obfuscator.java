@@ -10,7 +10,6 @@ import java.util.concurrent.ConcurrentMap;
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
-import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.SecretKeySpec;
 
 import com.google.common.collect.MapMaker;
@@ -181,7 +180,8 @@ public final class Obfuscator
 			this.numberGenerator = new SecureRandom ();
 			try {
 				this.cipherKeyGenerator = KeyGenerator.getInstance (this.cipherKeyVariant);
-				this.cipherKeyFactory = SecretKeyFactory.getInstance (this.cipherKeyVariant);
+				// NOTE:  See the note about Java 1.6 key generation compatibility.
+				// this.cipherKeyFactory = SecretKeyFactory.getInstance (this.cipherKeyVariant);
 			} catch (final GeneralSecurityException error) {
 				throw (new RuntimeException (error));
 			}
@@ -235,6 +235,8 @@ public final class Obfuscator
 				final byte[] keyBytes = keyStream.toByteArray ();
 				keySpec = new SecretKeySpec (keyBytes, this.cipherKeyVariant);
 			}
+			return (keySpec);
+			/* NOTE: The following seems not to work on Java 1.6.  However it seems to work without.
 			final SecretKey key;
 			try {
 				key = this.cipherKeyFactory.generateSecret (keySpec);
@@ -242,6 +244,7 @@ public final class Obfuscator
 				throw (new RuntimeException (error));
 			}
 			return (key);
+			*/
 		}
 		
 		public final int generateInteger () {
@@ -253,7 +256,8 @@ public final class Obfuscator
 		public final String cipherKeyVariant;
 		public final String cipherVariant;
 		private final BaseEncoding bufferCoder;
-		private final SecretKeyFactory cipherKeyFactory;
+		// NOTE:  See the note about Java 1.6 key generation compatibility.
+		// private final SecretKeyFactory cipherKeyFactory;
 		private final KeyGenerator cipherKeyGenerator;
 		private final SecureRandom numberGenerator;
 		
