@@ -92,7 +92,7 @@ public final class Obfuscator
 	}
 	
 	public final String encodeIdentifier32 (final int type, final int identifier) {
-		final Identifier32Token wrapper = Identifier32Token.create (type, identifier, this.generateTimestamp ());
+		final Identifier32Token wrapper = Identifier32Token.create (type, identifier);
 		final byte[] buffer = Identifier32Token.encode (wrapper);
 		this.encrypt (buffer);
 		final String token = this.algorithms.encodeBuffer (buffer);
@@ -281,6 +281,10 @@ public final class Obfuscator
 		public final int identifier;
 		public final long timestamp;
 		public final int type;
+		
+		public static final Identifier32Token create (final int type, final int identifier) {
+			return (Identifier32Token.create (type, identifier, 0));
+		}
 		
 		public static final Identifier32Token create (final int type, final int identifier, final long timestamp) {
 			return (new Identifier32Token (type, identifier, timestamp));
