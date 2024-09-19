@@ -7,7 +7,7 @@
 	
 	<groupId>ro.volution.java.tools</groupId>
 	<artifactId>token-obfuscator</artifactId>
-	<version>0.1.0</version>
+	<version>0.2.0</version>
 	<packaging>jar</packaging>
 	
 	<dependencies>
@@ -77,17 +77,17 @@
 	
 	<properties>
 		
-		<versions.dependencies.guava>17.0</versions.dependencies.guava>
-		<versions.dependencies.junit>4.10</versions.dependencies.junit>
+		<versions.dependencies.guava>31.1-jre</versions.dependencies.guava>
+		<versions.dependencies.junit>4.13.2</versions.dependencies.junit>
 		
-		<versions.plugins.compiler>2.3.2</versions.plugins.compiler>
-		<versions.plugins.eclipse>2.8</versions.plugins.eclipse>
-		<versions.plugins.jar>2.4</versions.plugins.jar>
-		<versions.plugins.javadoc>2.8</versions.plugins.javadoc>
-		<versions.plugins.source>2.1.2</versions.plugins.source>
+		<versions.plugins.compiler>3.10.1</versions.plugins.compiler>
+		<versions.plugins.eclipse>2.10</versions.plugins.eclipse>
+		<versions.plugins.jar>3.3.0</versions.plugins.jar>
+		<versions.plugins.javadoc>3.5.0</versions.plugins.javadoc>
+		<versions.plugins.source>3.2.1</versions.plugins.source>
 		
-		<versions.java.source>1.6</versions.java.source>
-		<versions.java.target>1.6</versions.java.target>
+		<versions.java.source>11</versions.java.source>
+		<versions.java.target>11</versions.java.target>
 		
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		
